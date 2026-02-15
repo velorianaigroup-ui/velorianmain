@@ -55,7 +55,7 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
-            
+            <a
               href="#contact"
               className="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
             >
@@ -81,7 +81,7 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
-            
+            <a
               href="#contact"
               className="block mx-6 mt-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold text-center"
               onClick={() => setIsMobileMenuOpen(false)}

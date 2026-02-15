@@ -37,7 +37,7 @@ export default function Contact() {
             Ready to <span className="text-gradient">Transform</span> Your Business?
           </h2>
           <p className="text-xl text-dark-300 max-w-2xl mx-auto">
-            Let's discuss how we can deploy AI solutions that deliver real results in 30-60 days.
+            Let&apos;s discuss how we can deploy AI solutions that deliver real results in 30-60 days.
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12">
@@ -47,7 +47,7 @@ export default function Contact() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-primary-500/20 border border-primary-500/30 rounded-lg">
                 <p className="text-primary-400 font-semibold">
-                  Thanks! We'll get back to you within 24 hours.
+                  Thanks! We&apos;ll get back to you within 24 hours.
                 </p>
               </div>
             )}

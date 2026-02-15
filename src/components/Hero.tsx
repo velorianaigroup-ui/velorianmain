@@ -28,14 +28,14 @@ export default function Hero() {
           <span className="text-primary-400 font-semibold"> $18M+ in value</span> created for our clients.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-          
+          <a
             href="#contact"
             className="group px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2"
           >
             Start Your AI Journey
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
-          
+          <a
             href="#results"
             className="px-8 py-4 glass-effect text-white rounded-lg font-semibold text-lg hover:bg-dark-800/50 transition-all inline-flex items-center justify-center"
           >

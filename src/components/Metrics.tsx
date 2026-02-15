@@ -16,7 +16,7 @@ export default function Metrics() {
             Real <span className="text-gradient">Results</span>, Real Impact
           </h2>
           <p className="text-xl text-dark-300 max-w-2xl mx-auto">
-            Our AI solutions deliver measurable ROI from day one. Here's what we've achieved for our clients.
+            Our AI solutions deliver measurable ROI from day one. Here&apos;s what we&apos;ve achieved for our clients.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">

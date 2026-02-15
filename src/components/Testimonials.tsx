@@ -19,7 +19,7 @@ export default function Testimonials() {
             <span className="text-gradient">Success Stories</span> That Speak Volumes
           </h2>
           <p className="text-xl text-dark-300 max-w-2xl mx-auto">
-            Real businesses, real results. See how we've helped companies transform with AI.
+            Real businesses, real results. See how we&apos;ve helped companies transform with AI.
           </p>
         </div>
         <div className="glass-effect rounded-2xl p-8 lg:p-12 mb-12 relative">
@@ -50,7 +50,7 @@ export default function Testimonials() {
           </div>
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <div className="text-6xl text-primary-500/30 font-serif mb-4">"</div>
+              <div className="text-6xl text-primary-500/30 font-serif mb-4">&ldquo;</div>
               <p className="text-xl text-dark-100 leading-relaxed mb-6">
                 {currentTestimonial.content}
               </p>
@@ -137,7 +137,7 @@ export default function Testimonials() {
                 </div>
               </div>
               <p className="text-dark-200 text-sm line-clamp-3 mb-4">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
               <div className="flex items-center gap-2">
                 {testimonial.moneySaved && (

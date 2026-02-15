@@ -36,7 +36,7 @@ export default function ConsultingBrands() {
                 <h3 className="text-3xl font-bold text-white mb-2 font-display">
                   {brand.name}
                 </h3>
-                
+                <a
                   href={`https://${brand.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -53,7 +53,7 @@ export default function ConsultingBrands() {
                 <p className="text-dark-400 mb-6">
                   {brand.description}
                 </p>
-                
+                <a
                   href={`https://${brand.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
