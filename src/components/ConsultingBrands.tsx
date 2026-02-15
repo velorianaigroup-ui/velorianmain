@@ -14,7 +14,7 @@ export default function ConsultingBrands() {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
-          {consultingBrands.map((brand, index) => (
+          {consultingBrands.map((brand) => (
             <div
               key={brand.domain}
               className="glass-effect rounded-2xl p-8 hover:scale-105 transition-all duration-300 group relative overflow-hidden"
