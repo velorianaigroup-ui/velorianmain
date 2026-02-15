@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 export const metadata: Metadata = {
-  title: 'Velorian AI - Deploy AI Solutions in 30-60 Days',
-  description: 'Transform your business with lightning-fast AI deployment. $18M+ in value created. Production-ready solutions in 30-60 days.',
-  keywords: 'AI deployment, AI solutions, business automation, AI consulting, 30 days to AI, 60 days to AI',
-  authors: [{ name: 'Velorian AI' }],
-  openGraph: {
-    title: 'Velorian AI - Deploy AI Solutions in 30-60 Days',
-    description: 'Transform your business with lightning-fast AI deployment. $18M+ in value created.',
-    type: 'website',
-    url: 'https://velorian.ai',
-  },
+  title: '30 Days to AI - Lightning-Fast AI Deployment',
+  description: 'Deploy production-ready AI solutions in 30 days. Fast. Focused. Guaranteed. From chatbots to automation, we build AI that works.',
+  keywords: '30 days AI, rapid AI deployment, fast AI implementation, AI consulting, quick AI solutions',
 };
 export default function RootLayout({
   children,
