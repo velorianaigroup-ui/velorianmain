@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    unoptimized: true,
   },
 };
 module.exports = nextConfig;
