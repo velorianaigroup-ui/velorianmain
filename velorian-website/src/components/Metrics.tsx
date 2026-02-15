@@ -1,3 +1,4 @@
+'use client';
 import { metrics } from '@/lib/data';
 import { DollarSign, TrendingUp, Zap, Rocket } from 'lucide-react';
 const iconMap: { [key: string]: any } = {

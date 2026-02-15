@@ -1,3 +1,5 @@
+'use client';
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -71,24 +73,24 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#brands" className="text-dark-400 hover:text-primary-400 transition-colors">
+                <Link href="#brands" className="text-dark-400 hover:text-primary-400 transition-colors">
                   Our Brands
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#results" className="text-dark-400 hover:text-primary-400 transition-colors">
+                <Link href="#results" className="text-dark-400 hover:text-primary-400 transition-colors">
                   Results
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#testimonials" className="text-dark-400 hover:text-primary-400 transition-colors">
+                <Link href="#testimonials" className="text-dark-400 hover:text-primary-400 transition-colors">
                   Success Stories
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-dark-400 hover:text-primary-400 transition-colors">
+                <Link href="#contact" className="text-dark-400 hover:text-primary-400 transition-colors">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,12 +100,12 @@ export default function Footer() {
             &copy; {currentYear} Velorian AI. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-dark-400 hover:text-primary-400 transition-colors">
+            <Link href="#" className="text-dark-400 hover:text-primary-400 transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="text-dark-400 hover:text-primary-400 transition-colors">
+            </Link>
+            <Link href="#" className="text-dark-400 hover:text-primary-400 transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

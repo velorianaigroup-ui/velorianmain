@@ -1,3 +1,4 @@
+'use client';
 import { process } from '@/lib/data';
 import { CheckCircle, Zap } from 'lucide-react';
 export default function Process() {

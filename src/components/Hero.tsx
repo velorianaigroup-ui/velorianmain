@@ -1,3 +1,4 @@
+'use client';
 import { ArrowRight, Zap, Clock, Rocket, TrendingUp, CheckCircle } from 'lucide-react';
 export default function Hero() {
   return (

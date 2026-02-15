@@ -1,3 +1,5 @@
+'use client';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 export default function Navigation() {
@@ -24,7 +26,7 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
-          <a href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg blur-lg opacity-30 group-hover:opacity-60 transition-opacity"></div>
               <div className="relative bg-white p-2 rounded-lg border border-primary-200 shadow-sm">
@@ -42,16 +44,16 @@ export default function Navigation() {
               <span className="text-2xl font-bold text-gradient font-display">VELORIAN</span>
               <span className="block text-xs text-dark-500 uppercase tracking-wider">AI Solutions</span>
             </div>
-          </a>
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-dark-600 hover:text-primary-500 transition-colors font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href="#contact"
@@ -70,14 +72,14 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 glass-effect rounded-lg mt-2 mb-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="block px-6 py-3 text-dark-600 hover:text-primary-500 hover:bg-dark-100/50 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href="#contact"

@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { testimonials } from '@/lib/data';
 import { Building2, TrendingUp, DollarSign, Zap, ChevronLeft, ChevronRight } from 'lucide-react';

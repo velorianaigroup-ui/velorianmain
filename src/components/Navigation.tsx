@@ -1,3 +1,5 @@
+'use client';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 export default function Navigation() {
@@ -24,20 +26,20 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
-          <a href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div>
               <span className="text-2xl font-black text-gradient font-display">30 DAYS TO AI</span>
             </div>
-          </a>
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-light-600 hover:text-primary-500 transition-colors font-bold"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href="#contact"
@@ -56,14 +58,14 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 bg-white rounded-xl mt-2 mb-4 shadow-xl border border-light-200">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="block px-6 py-3 text-light-600 hover:text-primary-500 hover:bg-light-100 transition-colors font-bold"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href="#contact"

@@ -1,31 +1,52 @@
 import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#e6f7ff', 100: '#bae7ff', 200: '#91d5ff', 300: '#69c0ff',
-          400: '#40a9ff', 500: '#0096FF', 600: '#0077CC', 700: '#005599',
-          800: '#003d70', 900: '#002447',
+          50: '#e6f7ff',
+          100: '#bae7ff',
+          200: '#91d5ff',
+          300: '#69c0ff',
+          400: '#40a9ff',
+          500: '#0096FF',
+          600: '#0077CC',
+          700: '#005599',
+          800: '#003d70',
+          900: '#002447',
         },
         accent: {
-          50: '#e6fff5', 100: '#b3ffe0', 200: '#80ffcc', 300: '#4dffb8',
-          400: '#1affa3', 500: '#00FF88', 600: '#00cc6e', 700: '#009954',
-          800: '#00663a', 900: '#003320',
+          50: '#e6fff5',
+          100: '#b3ffe0',
+          200: '#80ffcc',
+          300: '#4dffb8',
+          400: '#1affa3',
+          500: '#00FF88',
+          600: '#00cc6e',
+          700: '#009954',
+          800: '#00663a',
+          900: '#003320',
         },
         light: {
-          50: '#ffffff', 100: '#fafafa', 200: '#f5f5f5', 300: '#e5e5e5',
-          400: '#d4d4d4', 500: '#a3a3a3', 600: '#737373', 700: '#525252',
-          800: '#404040', 900: '#262626',
+          50: '#ffffff',
+          100: '#fafafa',
+          200: '#f5f5f5',
+          300: '#e5e5e5',
+          400: '#d4d4d4',
+          500: '#a3a3a3',
+          600: '#737373',
+          700: '#525252',
+          800: '#404040',
+          900: '#262626',
         }
       },
       fontFamily: {
-        sans: ['system-ui', 'sans-serif'],
-        display: ['Orbitron', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.4s ease-in-out',
