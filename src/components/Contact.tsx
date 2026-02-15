@@ -1,6 +1,7 @@
-'use client';
 import { useState } from 'react';
 import { Send, Mail, MessageSquare, Clock } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,24 +12,43 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          timeline: formData.timeline,
+          message: formData.message,
+          source: '30days',
+        });
+
+      if (error) throw error;
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', timeline: '30days', message: '' });
-
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1500);
+    } catch {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
   return (
     <section id="contact-form" className="section-padding bg-light-100">
       <div className="max-w-7xl mx-auto">
@@ -37,7 +57,7 @@ export default function Contact() {
             GET <span className="text-gradient">STARTED</span>
           </h2>
           <p className="text-xl text-light-600 max-w-2xl mx-auto font-semibold">
-            Let&apos;s discuss how we can deploy AI solutions that deliver real results in 30 days.
+            Let's discuss how we can deploy AI solutions that deliver real results in 30 days.
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12">
@@ -47,100 +67,54 @@ export default function Contact() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-accent-100 border border-accent-300 rounded-xl">
                 <p className="text-accent-700 font-bold">
-                  Thanks! We&apos;ll get back to you within 24 hours.
+                  Thanks! We'll get back to you within 24 hours.
+                </p>
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-red-700 font-bold">
+                  Something went wrong. Please email us directly at ValorianAIGroup@gmail.com.
                 </p>
               </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-bold text-light-600 mb-2">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
+                <label htmlFor="name" className="block text-sm font-bold text-light-600 mb-2">Your Name *</label>
+                <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange}
                   className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 placeholder-light-400 focus:outline-none focus:border-primary-500 transition-colors"
-                  placeholder="John Doe"
-                />
+                  placeholder="John Doe" />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-bold text-light-600 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
+                <label htmlFor="email" className="block text-sm font-bold text-light-600 mb-2">Email Address *</label>
+                <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange}
                   className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 placeholder-light-400 focus:outline-none focus:border-primary-500 transition-colors"
-                  placeholder="john@company.com"
-                />
+                  placeholder="john@company.com" />
               </div>
               <div>
-                <label htmlFor="company" className="block text-sm font-bold text-light-600 mb-2">
-                  Company Name *
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  required
-                  value={formData.company}
-                  onChange={handleChange}
+                <label htmlFor="company" className="block text-sm font-bold text-light-600 mb-2">Company Name *</label>
+                <input type="text" id="company" name="company" required value={formData.company} onChange={handleChange}
                   className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 placeholder-light-400 focus:outline-none focus:border-primary-500 transition-colors"
-                  placeholder="Your Company Inc."
-                />
+                  placeholder="Your Company Inc." />
               </div>
               <div>
-                <label htmlFor="timeline" className="block text-sm font-bold text-light-600 mb-2">
-                  Preferred Timeline
-                </label>
-                <select
-                  id="timeline"
-                  name="timeline"
-                  value={formData.timeline}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 focus:outline-none focus:border-primary-500 transition-colors"
-                >
+                <label htmlFor="timeline" className="block text-sm font-bold text-light-600 mb-2">Preferred Timeline</label>
+                <select id="timeline" name="timeline" value={formData.timeline} onChange={handleChange}
+                  className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 focus:outline-none focus:border-primary-500 transition-colors">
                   <option value="30days">30 Days - Rapid Implementation</option>
                   <option value="60days">60 Days - Complex Solutions</option>
                   <option value="consulting">Not sure - Need consultation</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-bold text-light-600 mb-2">
-                  Tell Us About Your Project *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
+                <label htmlFor="message" className="block text-sm font-bold text-light-600 mb-2">Tell Us About Your Project *</label>
+                <textarea id="message" name="message" required rows={4} value={formData.message} onChange={handleChange}
                   className="w-full px-4 py-3 bg-light-100 border-2 border-light-300 rounded-xl text-light-900 placeholder-light-400 focus:outline-none focus:border-primary-500 transition-colors resize-none"
-                  placeholder="Describe your business challenge and what you're hoping to achieve with AI..."
-                />
+                  placeholder="Describe your business challenge and what you're hoping to achieve with AI..." />
               </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-black text-lg hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>Processing...</>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Send Message
-                  </>
-                )}
+              <button type="submit" disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-black text-lg hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                {isSubmitting ? <>Processing...</> : <><Send className="w-5 h-5" /> Send Message</>}
               </button>
             </form>
           </div>
@@ -168,20 +142,14 @@ export default function Contact() {
             <div className="bg-white rounded-3xl p-8 border-2 border-light-200 shadow-lg">
               <h3 className="text-xl font-black text-light-900 mb-4 font-display">Contact Methods</h3>
               <div className="space-y-4">
-                <a
-                  href="mailto:ValorianAIGroup@gmail.com"
-                  className="flex items-center gap-3 text-light-600 hover:text-primary-500 transition-colors font-medium"
-                >
-                  <Mail className="w-5 h-5" />
-                  ValorianAIGroup@gmail.com
+                <a href="mailto:ValorianAIGroup@gmail.com" className="flex items-center gap-3 text-light-600 hover:text-primary-500 transition-colors font-medium">
+                  <Mail className="w-5 h-5" /> ValorianAIGroup@gmail.com
                 </a>
                 <div className="flex items-center gap-3 text-light-600 font-medium">
-                  <MessageSquare className="w-5 h-5" />
-                  <span>Live chat available 9am-5pm EST</span>
+                  <MessageSquare className="w-5 h-5" /> <span>Live chat available 9am-5pm EST</span>
                 </div>
                 <div className="flex items-center gap-3 text-light-600 font-medium">
-                  <Clock className="w-5 h-5" />
-                  <span>Response time: Within 24 hours</span>
+                  <Clock className="w-5 h-5" /> <span>Response time: Within 24 hours</span>
                 </div>
               </div>
             </div>

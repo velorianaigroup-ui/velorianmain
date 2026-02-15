@@ -1,4 +1,3 @@
-'use client';
 import { ArrowRight, Calendar, Zap, Rocket, TrendingUp, CheckCircle } from 'lucide-react';
 export default function CTA() {
   return (

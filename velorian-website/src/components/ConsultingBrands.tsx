@@ -1,4 +1,3 @@
-'use client';
 import { consultingBrands } from '@/lib/data';
 import { ExternalLink, Clock, Zap } from 'lucide-react';
 export default function ConsultingBrands() {

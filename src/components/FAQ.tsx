@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import { faqs } from '@/lib/data';
 import { ChevronDown, HelpCircle } from 'lucide-react';

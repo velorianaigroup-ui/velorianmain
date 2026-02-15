@@ -1,4 +1,3 @@
-'use client';
 import { caseStudies } from '@/lib/data';
 import { Building2, Target, TrendingUp, Clock, Sparkles } from 'lucide-react';
 export default function CaseStudies() {

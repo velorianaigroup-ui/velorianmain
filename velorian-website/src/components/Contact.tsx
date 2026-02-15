@@ -1,6 +1,7 @@
-'use client';
 import { useState } from 'react';
 import { Send, Mail, MessageSquare, Clock } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,24 +12,43 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          timeline: formData.timeline,
+          message: formData.message,
+          source: 'velorian',
+        });
+
+      if (error) throw error;
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', timeline: '30days', message: '' });
-
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1500);
+    } catch {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
   return (
     <section id="contact" className="section-padding">
       <div className="max-w-7xl mx-auto">
@@ -37,7 +57,7 @@ export default function Contact() {
             Ready to <span className="text-gradient">Transform</span> Your Business?
           </h2>
           <p className="text-xl text-dark-500 max-w-2xl mx-auto">
-            Let&apos;s discuss how we can deploy AI solutions that deliver real results in 30-60 days.
+            Let's discuss how we can deploy AI solutions that deliver real results in 30-60 days.
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12">
@@ -47,7 +67,14 @@ export default function Contact() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-primary-50 border border-primary-200 rounded-lg">
                 <p className="text-primary-700 font-semibold">
-                  Thanks! We&apos;ll get back to you within 24 hours.
+                  Thanks! We'll get back to you within 24 hours.
+                </p>
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-700 font-semibold">
+                  Something went wrong. Please email us directly at ValorianAIGroup@gmail.com.
                 </p>
               </div>
             )}
