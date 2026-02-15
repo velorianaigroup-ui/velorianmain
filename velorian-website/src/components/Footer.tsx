@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-dark-400 mb-4 max-w-md">
-              Lightning-fast AI deployment for businesses ready to transform. 
+              Lightning-fast AI deployment for businesses ready to transform.
               Production-ready solutions in 30-60 days.
             </p>
             <div className="flex gap-4">

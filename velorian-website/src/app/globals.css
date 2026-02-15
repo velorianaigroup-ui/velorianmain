@@ -5,25 +5,25 @@
   :root {
     --font-display: 'Orbitron', sans-serif;
   }
-  
+
   body {
-    @apply bg-dark-950 text-dark-50;
+    @apply bg-white text-dark-800;
   }
   * {
-    @apply border-dark-800;
+    @apply border-dark-200;
   }
 }
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-400 via-accent-500 to-primary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 bg-clip-text text-transparent;
   }
-  
+
   .glass-effect {
-    @apply bg-dark-900/50 backdrop-blur-xl border border-dark-800/50;
+    @apply bg-white/80 backdrop-blur-xl border border-dark-200/60 shadow-sm;
   }
-  
+
   .glow {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
   }
   .section-padding {
     @apply px-6 py-20 md:px-12 lg:px-24;
@@ -33,14 +33,14 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #cbd5e1;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #94a3b8;
 }
 html {
   scroll-behavior: smooth;
