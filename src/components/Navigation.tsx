@@ -13,36 +13,22 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const navLinks = [
-    { href: '#brands', label: 'Our Brands' },
-    { href: '#results', label: 'Results' },
-    { href: '#testimonials', label: 'Success Stories' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#solutions', label: 'Solutions' },
+    { href: '#process', label: 'Process' },
+    { href: '#cases', label: 'Case Studies' },
+    { href: '#faq', label: 'FAQ' },
   ];
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-effect shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white/90 backdrop-blur-xl shadow-lg border-b border-light-200' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative bg-dark-900 p-2 rounded-lg border border-primary-500/30">
-                <svg className="w-8 h-8" viewBox="0 0 40 40" fill="none">
-                  <path
-                    d="M20 5 L35 12.5 L35 27.5 L20 35 L5 27.5 L5 12.5 Z"
-                    className="stroke-primary-400 fill-primary-500/20"
-                    strokeWidth="2"
-                  />
-                  <circle cx="20" cy="20" r="5" className="fill-accent-400" />
-                </svg>
-              </div>
-            </div>
             <div>
-              <span className="text-2xl font-bold text-gradient font-display">VELORIAN</span>
-              <span className="block text-xs text-dark-400 uppercase tracking-wider">AI Solutions</span>
+              <span className="text-2xl font-black text-gradient font-display">30 DAYS TO AI</span>
             </div>
           </Link>
           <div className="hidden md:flex items-center space-x-8">
@@ -50,32 +36,32 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-dark-300 hover:text-primary-400 transition-colors font-medium"
+                className="text-light-600 hover:text-primary-500 transition-colors font-bold"
               >
                 {link.label}
               </Link>
             ))}
             <a
               href="#contact"
-              className="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
+              className="px-6 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all"
             >
               Get Started
             </a>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-dark-300 hover:text-primary-400"
+            className="md:hidden p-2 text-light-600 hover:text-primary-500"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 glass-effect rounded-lg mt-2 mb-4">
+          <div className="md:hidden py-4 bg-white rounded-xl mt-2 mb-4 shadow-xl border border-light-200">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-6 py-3 text-dark-300 hover:text-primary-400 hover:bg-dark-800/50 transition-colors"
+                className="block px-6 py-3 text-light-600 hover:text-primary-500 hover:bg-light-100 transition-colors font-bold"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
@@ -83,7 +69,7 @@ export default function Navigation() {
             ))}
             <a
               href="#contact"
-              className="block mx-6 mt-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-lg font-semibold text-center"
+              className="block mx-6 mt-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-bold text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Get Started

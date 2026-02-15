@@ -5,42 +5,51 @@
   :root {
     --font-display: 'Orbitron', sans-serif;
   }
-  
+
   body {
-    @apply bg-dark-950 text-dark-50;
+    @apply bg-white text-light-900;
   }
   * {
-    @apply border-dark-800;
+    @apply border-light-200;
   }
 }
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-400 via-accent-500 to-primary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 bg-clip-text text-transparent;
   }
-  
+
+  .glass-light {
+    @apply bg-white/80 backdrop-blur-xl border border-light-200 shadow-lg;
+  }
+
   .glass-effect {
-    @apply bg-dark-900/50 backdrop-blur-xl border border-dark-800/50;
+    @apply bg-white/80 backdrop-blur-xl border border-light-200 shadow-lg;
   }
-  
+
   .glow {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
   }
   .section-padding {
     @apply px-6 py-20 md:px-12 lg:px-24;
+  }
+  .shimmer {
+    background-image: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
   }
 }
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #fafafa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #d4d4d4;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #a3a3a3;
 }
 html {
   scroll-behavior: smooth;

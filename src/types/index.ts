@@ -27,3 +27,20 @@ export interface ConsultingBrand {
   timeline: string;
   color: string;
 }
+export interface ProcessPhase {
+  day: string;
+  title: string;
+  activities: string[];
+}
+export interface CaseStudy {
+  company: string;
+  industry: string;
+  timeline: string;
+  challenge: string;
+  solution: string;
+  result: string;
+}
+export interface FAQ {
+  question: string;
+  answer: string;
+}

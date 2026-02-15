@@ -12,46 +12,46 @@ export default function Testimonials() {
   };
   const currentTestimonial = testimonials[currentIndex];
   return (
-    <section id="testimonials" className="section-padding bg-dark-900/50">
+    <section id="testimonials" className="section-padding bg-light-100">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display">
-            <span className="text-gradient">Success Stories</span> That Speak Volumes
+          <h2 className="text-6xl md:text-7xl font-black text-light-900 mb-6 font-display">
+            <span className="text-gradient">SUCCESS</span> STORIES
           </h2>
-          <p className="text-xl text-dark-300 max-w-2xl mx-auto">
+          <p className="text-xl text-light-600 max-w-2xl mx-auto font-semibold">
             Real businesses, real results. See how we&apos;ve helped companies transform with AI.
           </p>
         </div>
-        <div className="glass-effect rounded-2xl p-8 lg:p-12 mb-12 relative">
+        <div className="bg-white rounded-3xl p-8 lg:p-12 mb-12 border-2 border-light-200 shadow-xl relative">
           <div className="flex items-center justify-between mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/20 rounded-full border border-primary-500/30">
-              <Building2 className="w-4 h-4 text-primary-400" />
-              <span className="text-sm font-semibold text-primary-400">{currentTestimonial.industry}</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 rounded-full border border-primary-300">
+              <Building2 className="w-4 h-4 text-primary-600" />
+              <span className="text-sm font-bold text-primary-700">{currentTestimonial.industry}</span>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={prevTestimonial}
-                className="p-2 glass-effect rounded-lg hover:bg-dark-800/50 transition-colors"
+                className="p-2 bg-light-100 rounded-lg hover:bg-light-200 transition-colors"
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 text-light-700" />
               </button>
-              <span className="text-dark-400 text-sm px-3">
+              <span className="text-light-500 text-sm px-3 font-bold">
                 {currentIndex + 1} / {testimonials.length}
               </span>
               <button
                 onClick={nextTestimonial}
-                className="p-2 glass-effect rounded-lg hover:bg-dark-800/50 transition-colors"
+                className="p-2 bg-light-100 rounded-lg hover:bg-light-200 transition-colors"
                 aria-label="Next testimonial"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 text-light-700" />
               </button>
             </div>
           </div>
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <div className="text-6xl text-primary-500/30 font-serif mb-4">&ldquo;</div>
-              <p className="text-xl text-dark-100 leading-relaxed mb-6">
+              <div className="text-6xl text-primary-200 font-serif mb-4">&ldquo;</div>
+              <p className="text-xl text-light-700 leading-relaxed mb-6">
                 {currentTestimonial.content}
               </p>
               <div className="flex items-center gap-4">
@@ -59,61 +59,61 @@ export default function Testimonials() {
                   {currentTestimonial.client.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-lg">{currentTestimonial.client}</div>
-                  <div className="text-dark-400">{currentTestimonial.role}, {currentTestimonial.company}</div>
+                  <div className="font-bold text-light-900 text-lg">{currentTestimonial.client}</div>
+                  <div className="text-light-500">{currentTestimonial.role}, {currentTestimonial.company}</div>
                 </div>
               </div>
             </div>
             <div className="space-y-4">
-              <div className="p-4 bg-dark-800/50 rounded-lg border border-primary-500/20">
+              <div className="p-4 bg-light-100 rounded-xl border border-light-200">
                 <div className="flex items-center gap-3 mb-2">
-                  <TrendingUp className="w-5 h-5 text-primary-400" />
-                  <span className="font-semibold text-white">Key Result</span>
+                  <TrendingUp className="w-5 h-5 text-primary-500" />
+                  <span className="font-bold text-light-900">Key Result</span>
                 </div>
-                <p className="text-dark-200">{currentTestimonial.result}</p>
+                <p className="text-light-700">{currentTestimonial.result}</p>
               </div>
               {currentTestimonial.moneySaved && (
-                <div className="p-4 bg-dark-800/50 rounded-lg border border-primary-500/20">
+                <div className="p-4 bg-light-100 rounded-xl border border-light-200">
                   <div className="flex items-center gap-3 mb-2">
-                    <DollarSign className="w-5 h-5 text-primary-400" />
-                    <span className="font-semibold text-white">Money Saved</span>
+                    <DollarSign className="w-5 h-5 text-primary-500" />
+                    <span className="font-bold text-light-900">Money Saved</span>
                   </div>
-                  <p className="text-3xl font-bold text-gradient">
+                  <p className="text-3xl font-black text-gradient">
                     ${(currentTestimonial.moneySaved / 1000).toFixed(0)}K
                   </p>
                 </div>
               )}
               {currentTestimonial.revenueIncrease && (
-                <div className="p-4 bg-dark-800/50 rounded-lg border border-accent-500/20">
+                <div className="p-4 bg-light-100 rounded-xl border border-accent-200">
                   <div className="flex items-center gap-3 mb-2">
-                    <TrendingUp className="w-5 h-5 text-accent-400" />
-                    <span className="font-semibold text-white">Revenue Increase</span>
+                    <TrendingUp className="w-5 h-5 text-accent-600" />
+                    <span className="font-bold text-light-900">Revenue Increase</span>
                   </div>
-                  <p className="text-3xl font-bold text-gradient">
+                  <p className="text-3xl font-black text-gradient">
                     ${(currentTestimonial.revenueIncrease / 1000).toFixed(0)}K
                   </p>
                 </div>
               )}
               {currentTestimonial.efficiencyGain && (
-                <div className="p-4 bg-dark-800/50 rounded-lg border border-primary-500/20">
+                <div className="p-4 bg-light-100 rounded-xl border border-light-200">
                   <div className="flex items-center gap-3 mb-2">
-                    <Zap className="w-5 h-5 text-primary-400" />
-                    <span className="font-semibold text-white">Efficiency Gain</span>
+                    <Zap className="w-5 h-5 text-primary-500" />
+                    <span className="font-bold text-light-900">Efficiency Gain</span>
                   </div>
-                  <p className="text-3xl font-bold text-gradient">
+                  <p className="text-3xl font-black text-gradient">
                     {currentTestimonial.efficiencyGain}%
                   </p>
                 </div>
               )}
               <div className="flex items-center gap-2 pt-2">
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                <div className={`px-3 py-1 rounded-full text-sm font-bold ${
                   currentTestimonial.projectType === '30days'
-                    ? 'bg-primary-500/20 text-primary-400'
-                    : 'bg-accent-500/20 text-accent-400'
+                    ? 'bg-primary-100 text-primary-700'
+                    : 'bg-accent-100 text-accent-700'
                 }`}>
                   {currentTestimonial.projectType === '30days' ? '30 Days to AI' : '60 Days to AI'}
                 </div>
-                <div className="px-3 py-1 bg-dark-800/50 rounded-full text-sm font-medium text-dark-300">
+                <div className="px-3 py-1 bg-light-200 rounded-full text-sm font-bold text-light-600">
                   {currentTestimonial.category}
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function Testimonials() {
           {testimonials.filter((_, idx) => idx !== currentIndex).slice(0, 3).map((testimonial) => (
             <div
               key={testimonial.id}
-              className="glass-effect rounded-xl p-6 hover:scale-105 transition-all cursor-pointer"
+              className="bg-white rounded-2xl p-6 border-2 border-light-200 hover:border-primary-400 hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
               onClick={() => setCurrentIndex(testimonials.indexOf(testimonial))}
             >
               <div className="flex items-center gap-3 mb-4">
@@ -132,21 +132,21 @@ export default function Testimonials() {
                   {testimonial.client.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <div className="font-semibold text-white">{testimonial.client}</div>
-                  <div className="text-sm text-dark-400">{testimonial.company}</div>
+                  <div className="font-bold text-light-900">{testimonial.client}</div>
+                  <div className="text-sm text-light-500">{testimonial.company}</div>
                 </div>
               </div>
-              <p className="text-dark-200 text-sm line-clamp-3 mb-4">
+              <p className="text-light-700 text-sm line-clamp-3 mb-4">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
               <div className="flex items-center gap-2">
                 {testimonial.moneySaved && (
-                  <div className="px-3 py-1 bg-primary-500/20 rounded-full text-xs font-semibold text-primary-400">
+                  <div className="px-3 py-1 bg-primary-100 rounded-full text-xs font-bold text-primary-700">
                     ${(testimonial.moneySaved / 1000).toFixed(0)}K saved
                   </div>
                 )}
                 {testimonial.revenueIncrease && (
-                  <div className="px-3 py-1 bg-accent-500/20 rounded-full text-xs font-semibold text-accent-400">
+                  <div className="px-3 py-1 bg-accent-100 rounded-full text-xs font-bold text-accent-700">
                     +${(testimonial.revenueIncrease / 1000).toFixed(0)}K revenue
                   </div>
                 )}
