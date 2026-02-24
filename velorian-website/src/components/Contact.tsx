@@ -169,11 +169,11 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-dark-900 mb-4 font-display">Contact Methods</h3>
               <div className="space-y-4">
                 <a
-                  href="mailto:ValorianAIGroup@gmail.com"
+                  href="mailto:velorianaigroup@gmail.com"
                   className="flex items-center gap-3 text-dark-600 hover:text-primary-500 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  ValorianAIGroup@gmail.com
+                  velorianaigroup@gmail.com
                 </a>
                 <div className="flex items-center gap-3 text-dark-600">
                   <MessageSquare className="w-5 h-5" />
