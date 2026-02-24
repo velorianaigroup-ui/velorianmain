@@ -1,28 +1,18 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import ConsultingBrands from '@/components/ConsultingBrands';
+import Solutions from '@/components/Solutions';
 import Process from '@/components/Process';
-import CaseStudies from '@/components/CaseStudies';
-import Metrics from '@/components/Metrics';
-import Testimonials from '@/components/Testimonials';
-import FAQ from '@/components/FAQ';
+import Results from '@/components/Results';
 import CTA from '@/components/CTA';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navigation />
       <Hero />
-      <ConsultingBrands />
+      <Solutions />
       <Process />
-      <CaseStudies />
-      <Metrics />
-      <Testimonials />
-      <FAQ />
+      <Results />
       <CTA />
-      <Contact />
-      <Footer />
     </main>
   );
 }
