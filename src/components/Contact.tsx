@@ -15,13 +15,24 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error('Failed');
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', timeline: '30days', message: '' });
-
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1500);
+    } catch {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
@@ -48,6 +59,13 @@ export default function Contact() {
               <div className="mb-6 p-4 bg-accent-100 border border-accent-300 rounded-xl">
                 <p className="text-accent-700 font-bold">
                   Thanks! We&apos;ll get back to you within 24 hours.
+                </p>
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-100 border border-red-300 rounded-xl">
+                <p className="text-red-700 font-bold">
+                  Something went wrong. Please try emailing us directly at VelorianAIGroup@gmail.com.
                 </p>
               </div>
             )}
