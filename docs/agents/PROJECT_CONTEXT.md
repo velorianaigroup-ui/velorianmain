@@ -9,15 +9,40 @@ session is not guaranteed to be.
 
 ---
 
+## 0. ACTIVE FREEZE — 2026-07-29
+
+**Do not push to `claude/init-velorian-website-yARbG` for any reason until
+this notice is removed.** This branch is GitHub's default branch
+(`origin/HEAD -> origin/claude/init-velorian-website-yARbG`), and Vercel
+auto-deploys from it directly to production for multiple live
+customer-facing domains, with **no staging gate in front of it**. Any push —
+by any agent — goes live immediately, including seemingly harmless changes.
+
+**Current status:** CI/CD Engineer has been asked to draft (not yet execute)
+a plan for building real staging and reconfiguring which branch Vercel
+treats as production. That plan requires Michael's review and explicit
+approval before any Vercel/GitHub config changes are made — this is a
+production-topology change, exactly what §3's approval gate exists for.
+
+---
+
 ## 1. What this project is
 
 Three marketing/consulting sites for Velorian AI Group:
 
-| Site | Purpose | Domain |
-|---|---|---|
-| Parent company site | Brand hub, dark theme | velorian.ai |
-| 30-day consulting microsite | Rapid AI engagement offer | 30days2ai.com |
-| 60-day consulting microsite | Enterprise AI engagement offer | 60days2ai.com |
+| Site | Purpose | Live domain today | Also owned, not yet wired up |
+|---|---|---|---|
+| Parent company site | Brand hub, dark theme | velorian.ai (+ velorianai.com, both with `www.`) | — already fully wired, this is the pattern to replicate |
+| 30-day consulting microsite | Rapid AI engagement offer | 30daystoai.com (+ `www.`) | 30days2ai.com |
+| 60-day consulting microsite | Enterprise AI engagement offer | 60days2ai.com | 60daystoai.com (likely — needs verification) |
+
+Michael confirmed (Namecheap, active through 2027/2028) that all six domain
+variants — `30days2ai.com`, `30daystoai.com`, `60days2ai.com`,
+`60daystoai.com`, `velorian.ai`, `velorianai.com` — are real, intentional
+registrations, not typos. Each site should eventually have both of its
+variants pointed at the same Vercel project, the way `velorian-website`
+already does. Not urgent — this is a low-risk follow-up, not a blocker for
+current staging/branch work.
 
 **Scope lock:** these three sites are the *only* projects in scope for this
 agent team. Coquina Trail Co. / Jungle Mike's Jeep Adventures and the trading
@@ -32,30 +57,48 @@ them, even if they share the Vercel account or Linear workspace.
 ### Code
 | Repo/folder | Git repo? | Notes |
 |---|---|---|
-| `~/velorianmain` | Yes — the only real git repo | Contains velorian.ai. Multiple stale `claude/*` branches exist from past sessions with an old email typo (`ValorianAIGroup`) — do not resume work from those branches. |
-| `~/30days2ai-microsite` | No — standalone folder | Its `.vercel/project.json` was last found pointing at the wrong Vercel project (`velorianmain`'s ID). Verify before deploying from here. |
-| `~/60days2ai-microsite` | No — standalone folder | `.vercel/project.json` correctly points to its own `60days2ai-microsite` project (`prj_dRrm8gpYSyS7baf6oIliHXiixozd`) as of last check. |
+| `~/velorianmain` | Yes — the only real git repo | GitHub org `velorianaigroup-ui`. Default branch is `claude/init-velorian-website-yARbG` — see §0, this is currently live production. Multiple stale `claude/*` branches also exist from past sessions with an old email typo (`ValorianAIGroup`) — do not resume work from those. |
+| `~/30days2ai-microsite` | No — standalone folder | No Vercel project named `30days2ai-microsite` exists. The live 30-day site is actually served by the `velorianmain-x4ez` Vercel project (`prj_jpWaI1ZoLlGuaV6QouyCoEkTsNxr`, framework: vite) via `30daystoai.com`. This folder's `.vercel/project.json` mismatch (previously found pointing at `velorianmain`'s ID) is still unresolved — reconcile explicitly before deploying from here. |
+| `~/60days2ai-microsite` | No — standalone folder | `.vercel/project.json` correctly points to its own `60days2ai-microsite` project (`prj_dRrm8gpYSyS7baf6oIliHXiixozd`). Note: its last production deployment was CLI-sourced (`"source": "cli"`), not triggered by a git push — no confirmed git Production Branch for this project as of last check. |
 
-GitHub org: `velorianaigroup-ui`. No GitHub MCP connector is available in
-this environment — git operations happen via CLI (your sandboxed shell or
-Michael's interactive terminal for anything requiring browser auth).
+No GitHub MCP connector is available in this environment — git operations
+happen via CLI (your sandboxed shell or Michael's interactive terminal for
+anything requiring browser auth).
 
 ### Hosting
-Vercel account: `michael-uprights-projects-7e93ca17`.
-Vercel MCP connector is connected in the Claude.ai chat (read-only:
-`list_projects`, `get_project`, `list_deployments`, `get_deployment`,
-`get_deployment_events`, `list_teams`, docs search) — use this to check
-deployment/branch state without needing CLI auth. Actual deploys
-(`vercel --prod`, env var changes) still require the CLI, authenticated via
-`vercel login` in an **interactive** terminal (not available inside a
-sandboxed agent shell — ask Michael to run it in his own terminal if needed).
+Vercel account: `michael-uprights-projects-7e93ca17` (team ID
+`team_fzEyAaV00wNIvSazE6mFdY66`).
 
-**Known unresolved question as of last session:** the confirmed Production
-Branch for the `velorianmain` Vercel project was never verified. A direct
-`curl` to `https://velorian.ai/api/contact` returned 404, meaning whatever
-branch is live does not match the branch tip anyone was pushing to. **Do not
-assume any branch name is "production" — confirm via Vercel (dashboard or
-connector) before treating a push as having gone live.**
+There are **4 Vercel projects** on this account — confirmed via the Vercel
+MCP connector's `list_projects` / `get_project` / `get_deployment` on
+2026-07-29:
+
+| Vercel project | Custom domains | Confirmed Production Branch |
+|---|---|---|
+| `velorianmain` (`prj_fyildsnpjn2ZysUMhGcRhzCVVhqT`) | **none** — despite the name, this does *not* serve velorian.ai | `claude/init-velorian-website-yARbG` |
+| `velorian-website` (`prj_nPzI6p0BTWdbrVX7LwN1HLsDQXSo`) | velorian.ai, velorianai.com, www.velorian.ai, www.velorianai.com | `claude/init-velorian-website-yARbG` |
+| `velorianmain-x4ez` (`prj_jpWaI1ZoLlGuaV6QouyCoEkTsNxr`) | 30daystoai.com, www.30daystoai.com | `claude/init-velorian-website-yARbG` |
+| `60days2ai-microsite` (`prj_dRrm8gpYSyS7baf6oIliHXiixozd`) | 60days2ai.com | Not git-based — last deploy via CLI, no git Production Branch confirmed |
+
+All three git-linked projects deploy from the **same commit on the same
+branch simultaneously** — a single push to `claude/init-velorian-website-yARbG`
+fans out to velorian.ai and 30daystoai.com at once (and to `velorianmain`'s
+domain-less preview). `velorianmain` is likely dead weight/a duplicate
+project — not urgent, flagged for later cleanup.
+
+**Resolved (was "unknown" as of the prior session):** the Production Branch
+question is no longer ambiguous — see table above and §0. The earlier 404 on
+`https://velorian.ai/api/contact` was consistent with `velorian.ai` actually
+being served by `velorian-website`, a different project than whichever one
+past sessions assumed — always confirm by domain/alias, not by project name.
+
+Vercel MCP connector (read-only: `list_projects`, `get_project`,
+`list_deployments`, `get_deployment`, `get_deployment_events`, `list_teams`,
+docs search) is available for checking deployment/branch state without CLI
+auth. Actual deploys (`vercel --prod`, env var changes) still require the
+CLI, authenticated via `vercel login` in an **interactive** terminal (not
+available inside a sandboxed agent shell — ask Michael to run it in his own
+terminal if needed).
 
 ### Database / backend
 Supabase MCP connector is connected. Not currently wired into any live code
@@ -104,7 +147,9 @@ have one** — don't do untracked work.
    been verified on staging and Michael has approved the promotion.
    **Staging does not exist yet for any of the three sites** — building it
    is the CI/CD Engineer's first task. Until staging exists, no code changes
-   should be deployed anywhere except a Vercel Preview URL for review.
+   should be deployed anywhere except a Vercel Preview URL for review. See
+   §0 — the current default branch is already live production, so this is
+   not a theoretical risk.
 4. **All changes go through the CI/CD pipeline once it exists.** No agent
    hand-runs `vercel --prod` directly against production once a pipeline is
    live — pushes to the confirmed production branch (via an approved,
@@ -183,3 +228,12 @@ agent before proceeding.
   config was added as an afterthought instead of shipped with the
   migration. If revisited, ship `vercel.json` with `"framework": "vite"`
   in the same commit as the migration, not after.
+- A Vercel project's **name** does not reliably indicate which domain it
+  serves — `velorianmain` sounds like it should be the parent site but has
+  no custom domain at all, while `velorian-website` is the one actually
+  serving velorian.ai. Always confirm via the `domains`/alias list on the
+  project or deployment, not the project name.
+- A repo's GitHub default branch (`origin/HEAD`) can silently double as
+  Vercel's Production Branch even if nobody explicitly configured it that
+  way. Check `git branch -a` for the `origin/HEAD ->` line, not just
+  whatever branch naming conventions suggest.
