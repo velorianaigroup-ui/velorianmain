@@ -35,7 +35,7 @@ tested against real evidence, on staging or a preview URL — never against
 - [ ] Navigation links on all 3 sites resolve correctly (no dead `#contact`
       anchors, no cross-site broken links).
 - [ ] Each site shows its own correct branding/theme (velorian.ai = dark;
-      30days2ai.com and 60days2ai.com = their respective bold themes) — a
+      30daystoai.com and 60days2ai.com = their respective bold themes) — a
       past session briefly had one site's copy overwrite another's.
 - [ ] Correct email address renders everywhere it's displayed (currently:
       `velorianaigroup@gmail.com` — verify spelling exactly).
