@@ -65,7 +65,7 @@ export default function Contact() {
             {submitStatus === 'error' && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-700 font-semibold">
-                  Something went wrong. Please try emailing us directly at VelorianAIGroup@gmail.com.
+                  Something went wrong. Please try emailing us directly at velorianaigroup@gmail.com.
                 </p>
               </div>
             )}
@@ -187,11 +187,11 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-dark-900 mb-4 font-display">Contact Methods</h3>
               <div className="space-y-4">
                 <a
-                  href="mailto:VelorianAIGroup@gmail.com"
+                  href="mailto:velorianaigroup@gmail.com"
                   className="flex items-center gap-3 text-dark-600 hover:text-primary-500 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  VelorianAIGroup@gmail.com
+                  velorianaigroup@gmail.com
                 </a>
                 <div className="flex items-center gap-3 text-dark-600">
                   <MessageSquare className="w-5 h-5" />
