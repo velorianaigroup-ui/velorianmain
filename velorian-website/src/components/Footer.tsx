@@ -47,7 +47,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://30daystoai.com"
+                  href="https://30days2ai.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-dark-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1"

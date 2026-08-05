@@ -107,7 +107,7 @@ export const metrics: Metric[] = [
 export const consultingBrands: ConsultingBrand[] = [
   {
     name: '30 Days to AI',
-    domain: '30daystoai.com',
+    domain: '30days2ai.com',
     tagline: 'AI Solutions Deployed in 30 Days',
     description: 'Rapid AI implementation for businesses ready to transform quickly. Perfect for focused solutions like chatbots, automation, and predictive analytics.',
     timeline: '30 days',
