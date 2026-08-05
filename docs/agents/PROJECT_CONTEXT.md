@@ -69,28 +69,45 @@ anything requiring browser auth).
 Vercel account: `michael-uprights-projects-7e93ca17` (team ID
 `team_fzEyAaV00wNIvSazE6mFdY66`).
 
-There are **4 Vercel projects** on this account — confirmed via the Vercel
-MCP connector's `list_projects` / `get_project` / `get_deployment` on
-2026-07-29:
+There are **4 Vercel projects** on this account. Domain-to-project mapping
+below is confirmed via the Vercel **dashboard Domains tab directly**, per
+project, on 2026-08-04/05 — **not** via the Vercel MCP connector or REST API
+`domains`/`get_project` fields, which have a confirmed blind spot: a domain
+whose live serving is currently controlled by a manual Instant Rollback pin
+does not show up in those fields at all (see VEL-38 in Linear). An earlier
+version of this table used the MCP-reported (empty) domain list for
+`velorianmain` and wrongly concluded it served nothing — it does.
 
-| Vercel project | Custom domains | Confirmed Production Branch |
+| Vercel project | Custom domains | Production Branch |
 |---|---|---|
-| `velorianmain` (`prj_fyildsnpjn2ZysUMhGcRhzCVVhqT`) | **none** — despite the name, this does *not* serve velorian.ai | `claude/init-velorian-website-yARbG` |
 | `velorian-website` (`prj_nPzI6p0BTWdbrVX7LwN1HLsDQXSo`) | velorian.ai, velorianai.com, www.velorian.ai, www.velorianai.com | `claude/init-velorian-website-yARbG` |
 | `velorianmain-x4ez` (`prj_jpWaI1ZoLlGuaV6QouyCoEkTsNxr`) | 30daystoai.com, www.30daystoai.com | `claude/init-velorian-website-yARbG` |
-| `60days2ai-microsite` (`prj_dRrm8gpYSyS7baf6oIliHXiixozd`) | 60days2ai.com | Not git-based — last deploy via CLI, no git Production Branch confirmed |
+| `velorianmain` (`prj_fyildsnpjn2ZysUMhGcRhzCVVhqT`) | 30days2ai.com — dashboard-confirmed; manually Instant Rollback-pinned to deployment `a2c4ddb` since Feb 24 | **`frozen-do-not-use`** — repointed 2026-08-05, permanently (see below). Was `claude/init-velorian-website-yARbG` before that. |
+| `60days2ai-microsite` (`prj_dRrm8gpYSyS7baf6oIliHXiixozd`) | 60days2ai.com | Not git-based — last deploy via CLI, no git Production Branch |
 
-All three git-linked projects deploy from the **same commit on the same
-branch simultaneously** — a single push to `claude/init-velorian-website-yARbG`
-fans out to velorian.ai and 30daystoai.com at once (and to `velorianmain`'s
-domain-less preview). `velorianmain` is likely dead weight/a duplicate
-project — not urgent, flagged for later cleanup.
+**Why `velorianmain` was disconnected (2026-08-05):** it tracked the same
+shared branch as the other two git-linked projects, but builds a different,
+older, stale copy of the app living at the **repo root**
+(`rootDirectory: null`) — not the `velorian-website/` subfolder that real
+fixes have been landing in since VEL-39. Every push to the shared branch
+rebuilt this stale root app on `velorianmain` too, regardless of relevance,
+risking its manually-pinned `30days2ai.com` domain getting caught up in
+that push's fallout — which is what happened in the incident documented in
+VEL-40 (2026-08-04). Fix: created an inert branch, `frozen-do-not-use`
+(branched off `claude/init-velorian-website-yARbG`, never intended to
+receive commits — see history for exact push/verify steps), and repointed
+`velorianmain`'s Production Branch setting to it via the dashboard.
+`velorianmain` still receives harmless Preview builds on shared-branch
+pushes (Vercel previews any connected branch by default), but these can
+never promote to production since the configured Production Branch is now
+a dead branch — confirmed empirically: the push that shipped `f912180`
+triggered a Preview-only (`target: null`) build on `velorianmain` that
+changed nothing.
 
-**Resolved (was "unknown" as of the prior session):** the Production Branch
-question is no longer ambiguous — see table above and §0. The earlier 404 on
-`https://velorian.ai/api/contact` was consistent with `velorian.ai` actually
-being served by `velorian-website`, a different project than whichever one
-past sessions assumed — always confirm by domain/alias, not by project name.
+Only **two** projects now deploy from `claude/init-velorian-website-yARbG`
+to production: `velorian-website` and `velorianmain-x4ez`. `velorianmain`
+is intentionally isolated — do not re-point its Production Branch back to
+the shared branch without redoing the analysis in VEL-38/VEL-40 first.
 
 Vercel MCP connector (read-only: `list_projects`, `get_project`,
 `list_deployments`, `get_deployment`, `get_deployment_events`, `list_teams`,
@@ -237,3 +254,11 @@ agent before proceeding.
   Vercel's Production Branch even if nobody explicitly configured it that
   way. Check `git branch -a` for the `origin/HEAD ->` line, not just
   whatever branch naming conventions suggest.
+- A Vercel project can track the same shared branch as other projects while
+  building a completely different, unrelated app from it (e.g., a stale
+  copy at the repo root vs. the real one in a subfolder). A push aimed at
+  one project can still trigger a real rebuild on another project you
+  weren't thinking about at all — and if that project has a manually-pinned
+  Instant Rollback protecting a live domain, that rebuild can jeopardize it
+  (see VEL-40, 2026-08-04). Before any push to a shared branch, check every
+  project tracking that branch, not just the one you intend to affect.
