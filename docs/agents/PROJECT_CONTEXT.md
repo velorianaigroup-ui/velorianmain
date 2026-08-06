@@ -109,6 +109,54 @@ to production: `velorian-website` and `velorianmain-x4ez`. `velorianmain`
 is intentionally isolated — do not re-point its Production Branch back to
 the shared branch without redoing the analysis in VEL-38/VEL-40 first.
 
+**Root Directory confirmed for `velorianmain` (2026-08-06):** its build
+logs show package name `velorian-website@0.1.0` — same as the actual
+`velorian-website` subfolder — which briefly looked like the same
+Root-Directory-mismatch bug found on `velorianmain-x4ez` the same day.
+It isn't. Direct comparison (`cat package.json` at repo root vs.
+`cat velorian-website/package.json`) confirms **both files independently
+have `"name": "velorian-website"`** — a historical naming leftover, not
+a shared build path. `velorianmain` genuinely builds the **repo root**,
+a distinct codebase from the `velorian-website/` subfolder. The pinned
+deployment `a2c4ddb`'s own commit message — *"Sync 30days2ai-microsite
+with root"* — confirms the repo root was deliberately the 30-day codebase
+at that point in history; it just hasn't been touched since, while all of
+the day's active work landed in `velorian-website/` instead. If this
+tension resurfaces on any other project, check `package.json` `"name"`
+on both sides before assuming a Root Directory bug — matching package
+names are not proof of a shared build path.
+
+**Shipping new content to `velorianmain` / the 30-day domains:** the
+normal flow (push → `staging` → merge → auto-deploy) cannot reach
+`velorianmain` anymore, by design — see the disconnection above. Documented
+process instead, mirroring the pattern `60days2ai-microsite` already uses
+(`"source": "cli"`, no git Production Branch):
+
+1. Edit the repo-**root** source files directly (not `velorian-website/` —
+   that ships to a different domain entirely).
+2. From `~/velorianmain` (already linked to `prj_fyildsnpjn2ZysUMhGcRhzCVVhqT`
+   via `.vercel/project.json`), run `vercel deploy --prod`. Because
+   `velorianmain` has "Auto-assign Custom Production Domains" **off**
+   (see VEL-38), this does **not** go live automatically — it creates a
+   deployment with its own preview URL, current pin untouched. Review it
+   there first, same role a staging URL would normally play.
+3. Only once reviewed: `vercel promote <deployment-id-or-url>` — this is
+   the actual traffic-moving step, replacing the `a2c4ddb` pin with the
+   new deployment. Same approval gate as any other production change;
+   step 2 isn't one, step 3 is.
+
+**Not independently verified by CI/CD Engineer (2026-08-06):** every CLI
+write attempt this session (`vercel deploy --prod`, `vercel project
+inspect`, `vercel rollback` after a certain point) has failed with
+`Error: The specified scope does not exist`, tried against both the team
+ID and the team slug — this session's Vercel token has lost working
+access to this team scope, for both CLI and raw REST API calls (which
+separately 403 with a SAML re-auth requirement). The process above is
+documented from Vercel's own CLI docs and the account's existing
+`60days2ai-microsite` precedent, not confirmed working end-to-end by an
+agent in this session. **Michael will need to run steps 2–3 himself** in
+his own terminal until a working token is available.
+
 Vercel MCP connector (read-only: `list_projects`, `get_project`,
 `list_deployments`, `get_deployment`, `get_deployment_events`, `list_teams`,
 docs search) is available for checking deployment/branch state without CLI
