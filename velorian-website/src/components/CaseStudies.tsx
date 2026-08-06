@@ -3,7 +3,7 @@ import { caseStudies } from '@/lib/data';
 import { BarChart3, Building2 } from 'lucide-react';
 export default function CaseStudies() {
   return (
-    <section id="case-studies" className="section-padding">
+    <section id="results" className="section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4 font-display">

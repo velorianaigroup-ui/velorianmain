@@ -168,7 +168,6 @@ export default function Contact() {
               <ul className="space-y-4">
                 {[
                   'Fast deployment in 30-60 days',
-                  'Proven track record with $18M+ value created',
                   'Industry-specific AI expertise',
                   'Production-ready, scalable solutions',
                   'Ongoing support and optimization',

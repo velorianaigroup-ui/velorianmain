@@ -25,7 +25,6 @@ export default function Hero() {
         </h1>
         <p className="text-xl md:text-2xl text-dark-500 max-w-3xl mx-auto mb-12 animate-slide-up" style={{ animationDelay: '0.1s' }}>
           We deploy production-ready AI solutions in weeks, not months.
-          <span className="text-primary-600 font-semibold"> $18M+ in value</span> created for our clients.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <a
@@ -42,10 +41,9 @@ export default function Hero() {
             See Results
           </a>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24 animate-fade-in" style={{ animationDelay: '0.4s' }}>
           {[
             { value: '50+', label: 'AI Solutions Deployed' },
-            { value: '$18M+', label: 'Value Created' },
             { value: '98%', label: 'Client Satisfaction' },
             { value: '30-60', label: 'Days to Deploy' },
           ].map((stat, index) => (

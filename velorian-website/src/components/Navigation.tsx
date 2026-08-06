@@ -15,7 +15,6 @@ export default function Navigation() {
   const navLinks = [
     { href: '#brands', label: 'Our Brands' },
     { href: '#results', label: 'Results' },
-    { href: '#testimonials', label: 'Success Stories' },
     { href: '#contact', label: 'Contact' },
   ];
   return (

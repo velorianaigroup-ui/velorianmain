@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import './globals.css';
 export const metadata: Metadata = {
   title: 'Velorian AI - Deploy AI Solutions in 30-60 Days',
-  description: 'Transform your business with lightning-fast AI deployment. $18M+ in value created. Production-ready solutions in 30-60 days.',
+  description: 'Transform your business with lightning-fast AI deployment. Production-ready solutions in 30-60 days.',
   keywords: 'AI deployment, AI solutions, business automation, AI consulting, 30 days to AI, 60 days to AI',
   authors: [{ name: 'Velorian AI' }],
   openGraph: {
     title: 'Velorian AI - Deploy AI Solutions in 30-60 Days',
-    description: 'Transform your business with lightning-fast AI deployment. $18M+ in value created.',
+    description: 'Transform your business with lightning-fast AI deployment.',
     type: 'website',
     url: 'https://velorian.ai',
   },
