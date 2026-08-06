@@ -45,6 +45,6 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'Isn\'t AI overhyped?',
-    answer: 'Some of it, yes. IBM\'s 2025 CEO study found only 1 in 4 AI initiatives deliver their expected ROI — most of that gap comes down to skipping the business case before the build starts. We don\'t skip it. That\'s the difference between an AI project and an AI investment.',
+    answer: 'Some of it, yes. IBM\'s 2025 CEO study found only 1 in 4 AI initiatives deliver their expected ROI, and MIT\'s "GenAI Divide" report found 95% of generative AI pilots failed to show measurable bottom-line impact. Most of that gap comes down to skipping the business case before the build starts. We don\'t skip it. That\'s the difference between an AI project and an AI investment.',
   },
 ];
