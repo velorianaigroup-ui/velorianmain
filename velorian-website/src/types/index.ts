@@ -27,3 +27,9 @@ export interface ConsultingBrand {
   timeline: string;
   color: string;
 }
+export interface CaseStudy {
+  source: 'industry' | 'client';
+  attribution: string;
+  stat: string;
+  description?: string;
+}

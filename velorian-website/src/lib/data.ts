@@ -1,4 +1,4 @@
-import { Testimonial, Metric, ConsultingBrand } from '@/types';
+import { Testimonial, Metric, ConsultingBrand, CaseStudy } from '@/types';
 export const testimonials: Testimonial[] = [
   {
     id: '1',
@@ -120,5 +120,18 @@ export const consultingBrands: ConsultingBrand[] = [
     description: 'Comprehensive AI solutions for enterprises requiring custom ML models, multi-system integrations, and advanced data pipelines.',
     timeline: '60 days',
     color: 'accent',
+  },
+];
+export const caseStudies: CaseStudy[] = [
+  {
+    source: 'industry',
+    attribution: 'IDC Research, 2025',
+    stat: '$3.70 in returns for every $1 spent',
+  },
+  {
+    source: 'industry',
+    attribution: 'IBM 2025 CEO Study',
+    stat: 'Only 1 in 4 AI initiatives deliver their expected ROI',
+    description: 'The difference is a proper business case before the money starts flowing.',
   },
 ];
