@@ -1,4 +1,4 @@
-import { ConsultingBrand, CaseStudy } from '@/types';
+import { ConsultingBrand, CaseStudy, FAQ } from '@/types';
 export const consultingBrands: ConsultingBrand[] = [
   {
     name: '30 Days to AI',
@@ -28,5 +28,23 @@ export const caseStudies: CaseStudy[] = [
     attribution: 'IBM 2025 CEO Study',
     stat: 'Only 1 in 4 AI initiatives deliver their expected ROI',
     description: 'The difference is a proper business case before the money starts flowing.',
+  },
+];
+export const faqs: FAQ[] = [
+  {
+    question: 'Do I need clean data first?',
+    answer: 'No. Most engagements start with the data you already have. We identify what\'s usable, patch the gaps that actually matter, and build around the rest. "Wait until the data\'s perfect" is usually just a way to delay starting.',
+  },
+  {
+    question: 'What if my team isn\'t technical?',
+    answer: 'That\'s the default, not the exception. We build the system, document it in plain language, and train your team to run it day to day. No engineering background required.',
+  },
+  {
+    question: 'What happens after the 30/60 days?',
+    answer: 'You own everything we build — code, infrastructure, documentation. Ongoing support is available if you want it, but nothing ships locked behind a subscription.',
+  },
+  {
+    question: 'Isn\'t AI overhyped?',
+    answer: 'Some of it, yes. IBM\'s 2025 CEO study found only 1 in 4 AI initiatives deliver their expected ROI — most of that gap comes down to skipping the business case before the build starts. We don\'t skip it. That\'s the difference between an AI project and an AI investment.',
   },
 ];

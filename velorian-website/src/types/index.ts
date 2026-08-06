@@ -12,3 +12,7 @@ export interface CaseStudy {
   stat: string;
   description?: string;
 }
+export interface FAQ {
+  question: string;
+  answer: string;
+}

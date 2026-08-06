@@ -7,7 +7,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4 font-display">
-            The <span className="text-gradient">Evidence</span> Behind the Approach
+            The Math on <span className="text-gradient">AI Done Right</span>
           </h2>
           <p className="text-xl text-dark-500 max-w-2xl mx-auto">
             Why a proper AI engagement pays for itself — backed by industry research and client results.

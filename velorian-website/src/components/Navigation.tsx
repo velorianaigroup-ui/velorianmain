@@ -15,6 +15,7 @@ export default function Navigation() {
   const navLinks = [
     { href: '#brands', label: 'Our Brands' },
     { href: '#results', label: 'Results' },
+    { href: '#faq', label: 'FAQ' },
     { href: '#contact', label: 'Contact' },
   ];
   return (
