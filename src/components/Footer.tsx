@@ -85,10 +85,10 @@ export default function Footer() {
             &copy; {currentYear} Velorian AI. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link href="#" className="text-light-400 hover:text-primary-400 transition-colors">
+            <Link href="/privacy" className="text-light-400 hover:text-primary-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-light-400 hover:text-primary-400 transition-colors">
+            <Link href="/terms" className="text-light-400 hover:text-primary-400 transition-colors">
               Terms of Service
             </Link>
           </div>
