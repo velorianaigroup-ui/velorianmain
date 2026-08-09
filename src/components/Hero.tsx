@@ -1,5 +1,5 @@
 'use client';
-import { ArrowRight, Zap, Clock, Rocket, TrendingUp, CheckCircle } from 'lucide-react';
+import { ArrowRight, Zap, Clock, Rocket, CheckCircle } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-primary-50 to-accent-50">
@@ -45,10 +45,9 @@ export default function Hero() {
           </a>
         </div>
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
           {[
             { value: '30', label: 'Days', icon: Clock },
-            { value: '$180K', label: 'Avg. Saved', icon: TrendingUp },
             { value: '95%', label: 'Success', icon: CheckCircle },
           ].map((stat, index) => (
             <div key={index} className="glass-light rounded-2xl p-8 hover:scale-105 transition-all">

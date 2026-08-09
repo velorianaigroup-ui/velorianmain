@@ -1,5 +1,5 @@
 'use client';
-import { ArrowRight, Calendar, Zap, Rocket, TrendingUp, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calendar, Zap, Rocket, CheckCircle } from 'lucide-react';
 export default function CTA() {
   return (
     <section id="contact" className="px-6 py-24 md:px-12 lg:px-24 bg-gradient-to-br from-primary-500 via-primary-600 to-accent-500">
@@ -39,10 +39,9 @@ export default function CTA() {
               </a>
             </div>
             {/* Fast stats */}
-            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+            <div className="grid grid-cols-2 gap-6 max-w-xl mx-auto mb-12">
               {[
                 { icon: Zap, label: '30 days guaranteed' },
-                { icon: TrendingUp, label: '$180K avg. saved' },
                 { icon: CheckCircle, label: '95% success rate' },
               ].map((stat, index) => (
                 <div key={index} className="flex flex-col items-center gap-2">
