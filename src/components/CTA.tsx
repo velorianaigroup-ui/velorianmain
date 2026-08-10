@@ -24,7 +24,7 @@ export default function CTA() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <a
-                href="https://velorian.ai#contact"
+                href="#contact-form"
                 className="group px-12 py-6 bg-white text-primary-600 rounded-2xl font-black text-2xl shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all inline-flex items-center justify-center gap-3"
               >
                 <Calendar className="w-7 h-7" />
