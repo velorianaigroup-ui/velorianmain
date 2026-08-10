@@ -15,6 +15,12 @@ export default function Footer() {
               Lightning-fast AI deployment for businesses ready to transform.
               Production-ready solutions in 30 days.
             </p>
+            <a
+              href="tel:+13212706135"
+              className="text-light-400 hover:text-primary-400 transition-colors font-medium block mb-4"
+            >
+              (321) 270-6135
+            </a>
             <div className="flex gap-4">
               <a href="#" className="text-light-400 hover:text-primary-400 transition-colors font-medium">
                 LinkedIn

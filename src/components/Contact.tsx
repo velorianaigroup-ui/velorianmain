@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Send, Mail, MessageSquare, Clock } from 'lucide-react';
+import { Send, Mail, Phone, MessageSquare, Clock } from 'lucide-react';
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -203,6 +203,13 @@ export default function Contact() {
                 >
                   <Mail className="w-5 h-5" />
                   velorianaigroup@gmail.com
+                </a>
+                <a
+                  href="tel:+13212706135"
+                  className="flex items-center gap-3 text-light-600 hover:text-primary-500 transition-colors font-medium"
+                >
+                  <Phone className="w-5 h-5" />
+                  (321) 270-6135
                 </a>
                 <div className="flex items-center gap-3 text-light-600 font-medium">
                   <MessageSquare className="w-5 h-5" />
