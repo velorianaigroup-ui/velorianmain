@@ -1,8 +1,35 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
+import { isRateLimited, getClientIp } from '@/lib/rateLimit';
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 export async function POST(req: NextRequest) {
-  const { name, email, company, timeline, message } = await req.json();
+  let body;
+  try {
+    body = await req.json();
+  } catch (e) {
+    console.error('Failed to parse contact form request body:', e);
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+  const { name, email, company, timeline, message, website } = body;
+
+  // Honeypot: real users never see or fill this field. Fake success so
+  // bots don't learn they were caught.
+  if (website) {
+    return NextResponse.json({ success: true });
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
 
   if (!name || !email || !company || !message) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -27,12 +54,12 @@ export async function POST(req: NextRequest) {
     subject: `New inquiry from ${name} at ${company}`,
     html: `
       <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Company:</strong> ${company}</p>
-      <p><strong>Timeline:</strong> ${timelineLabel[timeline] ?? timeline}</p>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Company:</strong> ${escapeHtml(company)}</p>
+      <p><strong>Timeline:</strong> ${escapeHtml(timelineLabel[timeline] ?? timeline)}</p>
       <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br />')}</p>
+      <p>${escapeHtml(message).replace(/\n/g, '<br />')}</p>
     `,
   });
 
