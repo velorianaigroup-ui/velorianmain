@@ -8,6 +8,7 @@ export default function Contact() {
     company: '',
     timeline: '30days',
     message: '',
+    website: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -25,7 +26,7 @@ export default function Contact() {
       if (!res.ok) throw new Error('Failed');
 
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', company: '', timeline: '30days', message: '' });
+      setFormData({ name: '', email: '', company: '', timeline: '30days', message: '', website: '' });
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch {
       setSubmitStatus('error');
@@ -146,6 +147,16 @@ export default function Contact() {
                   placeholder="Describe your business challenge and what you're hoping to achieve with AI..."
                 />
               </div>
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}
+              />
               <button
                 type="submit"
                 disabled={isSubmitting}
