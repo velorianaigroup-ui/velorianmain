@@ -1,5 +1,5 @@
 'use client';
-import { ArrowRight, Calendar, Zap, Rocket, TrendingUp, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calendar, Rocket } from 'lucide-react';
 export default function CTA() {
   return (
     <section id="contact" className="px-6 py-24 md:px-12 lg:px-24 bg-gradient-to-br from-primary-500 via-primary-600 to-accent-500">
@@ -24,7 +24,7 @@ export default function CTA() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <a
-                href="https://velorian.ai#contact"
+                href="#contact-form"
                 className="group px-12 py-6 bg-white text-primary-600 rounded-2xl font-black text-2xl shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all inline-flex items-center justify-center gap-3"
               >
                 <Calendar className="w-7 h-7" />
@@ -37,19 +37,6 @@ export default function CTA() {
               >
                 Learn About Velorian
               </a>
-            </div>
-            {/* Fast stats */}
-            <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
-              {[
-                { icon: Zap, label: '30 days guaranteed' },
-                { icon: TrendingUp, label: '$180K avg. saved' },
-                { icon: CheckCircle, label: '95% success rate' },
-              ].map((stat, index) => (
-                <div key={index} className="flex flex-col items-center gap-2">
-                  <stat.icon className="w-8 h-8 text-white" />
-                  <span className="text-sm text-white font-bold text-center">{stat.label}</span>
-                </div>
-              ))}
             </div>
             {/* Footer note */}
             <div className="pt-8 border-t border-white/30">

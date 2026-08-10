@@ -36,6 +36,7 @@
   ],
   "exclude": [
     "node_modules",
-    "30days2ai-microsite"
+    "30days2ai-microsite",
+    "velorian-website"
   ]
 }
